@@ -1,15 +1,8 @@
-from selenium import webdriver
 import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 from datetime import datetime
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 
-options = webdriver.ChromeOptions()
-options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 SCRAPE_TIME = datetime.now().strftime(r"%Y-%m-%d-%H-%M")
 fname = f"ph_{SCRAPE_TIME}_indeedrss.csv"
