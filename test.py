@@ -2,6 +2,10 @@ import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 from datetime import datetime
+from google.cloud import storage
+import os
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'gcp_config.json'
 
 
 SCRAPE_TIME = datetime.now().strftime(r"%Y-%m-%d-%H-%M")
@@ -55,5 +59,12 @@ df = df.replace(r"\n", " ", regex=True)
 #return df
 #add_job(df)
 
-df.to_csv(fname)
+#df.to_csv(fname)
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  r'gcp_config.json'
+
+client = storage.Client()
+bucket = client.get_bucket('sample-de-rich')
+
+bucket.blob(fname).upload_from_string(df.to_csv(), 'text/csv')
 
