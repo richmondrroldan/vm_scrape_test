@@ -4,8 +4,8 @@ import pandas as pd
 from datetime import datetime
 from google.cloud import storage
 import os
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'gcp_config.json'
+import sys
+sys.path.insert(0, 'lib')
 
 
 SCRAPE_TIME = datetime.now().strftime(r"%Y-%m-%d-%H-%M")
@@ -60,8 +60,7 @@ df = df.replace(r"\n", " ", regex=True)
 #add_job(df)
 
 #df.to_csv(fname)
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  r'gcp_config.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'gcp_config.json'
 
 client = storage.Client()
 bucket = client.get_bucket('sample-de-rich')
