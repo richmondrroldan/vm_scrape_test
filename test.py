@@ -4,9 +4,6 @@ import pandas as pd
 from datetime import datetime
 from google.cloud import storage
 import os
-import sys
-sys.path.insert(0, 'lib')
-
 
 SCRAPE_TIME = datetime.now().strftime(r"%Y-%m-%d-%H-%M")
 fname = f"ph_{SCRAPE_TIME}_indeedrss.csv"
